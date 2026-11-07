@@ -1,0 +1,6 @@
+# Offline normalized blocklist. Keep this file local; it is never transmitted.
+alcohol
+weapon
+violence
+hate
+kill

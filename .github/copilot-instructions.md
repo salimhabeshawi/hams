@@ -1,0 +1,11 @@
+# Hams — repo instructions for Copilot
+- Always read `docs/SPEC.md` before working; it is the source of truth. Do not invent requirements; record judgment calls in `docs/DECISIONS.md`.
+- Android-only Flutter app (Riverpod, go_router, shared_preferences, Pigeon) plus a native Kotlin/C++ session engine (Oboe, Opus). UI never touches audio or sockets.
+- Never read, store, display or transmit real device names. Only generated or user-chosen Hams names.
+- Strict headphone rule on listeners; no audio recording or saving; no analytics; no outbound internet calls.
+- All UI strings via gen-l10n ARB (English). Never mention any specific audience or use case anywhere.
+- No allocation, locking or logging in real-time audio callbacks.
+- Verify package versions on pub.dev/Maven before adding. Keep dependencies minimal.
+- Each change: `flutter analyze` clean, `flutter test` green, debug APK builds. Write tests with the code.
+- Material 3 Expressive look: big shapes, springy motion, emphasized type, vivid themed color.
+- Work only on the phase requested; summarize what was done and what is left.
