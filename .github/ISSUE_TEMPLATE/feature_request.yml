@@ -1,0 +1,24 @@
+name: Feature request
+description: Suggest a change to Hams.
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the desired behavior without sharing private device data.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+    validations:
+      required: true
+  - type: checkboxes
+    id: offline
+    attributes:
+      label: Offline and privacy constraints
+      options:
+        - label: This request does not require accounts, analytics, recordings, or outbound internet calls.
+          required: true

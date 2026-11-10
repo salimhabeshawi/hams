@@ -1,0 +1,4 @@
+storeFile=../hams-release-key.jks
+storePassword=replace-with-keystore-password
+keyAlias=hams
+keyPassword=replace-with-key-password

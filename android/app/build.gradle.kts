@@ -4,6 +4,15 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+import java.util.Properties
+
+val signingPropertiesFile = rootProject.file("key.properties")
+val signingProperties = Properties()
+if (signingPropertiesFile.isFile) {
+    signingPropertiesFile.inputStream().use(signingProperties::load)
+}
+val splitPerAbi = project.hasProperty("split-per-abi")
+
 android {
     namespace = "org.hams.app"
     compileSdk = 37
@@ -34,9 +43,25 @@ android {
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            val releaseSigning = signingConfigs.create("release")
+            if (signingPropertiesFile.isFile) {
+                signingProperties.getProperty("keyAlias")?.let { releaseSigning.keyAlias = it }
+                signingProperties.getProperty("keyPassword")?.let { releaseSigning.keyPassword = it }
+                signingProperties.getProperty("storeFile")?.let {
+                    releaseSigning.storeFile = rootProject.file(it)
+                }
+                signingProperties.getProperty("storePassword")?.let {
+                    releaseSigning.storePassword = it
+                }
+            }
+            signingConfig = if (signingPropertiesFile.isFile) releaseSigning
+            else signingConfigs.getByName("debug")
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
         }
 
         defaultConfig {
@@ -47,7 +72,9 @@ android {
                 }
             }
             ndk {
-                abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86_64")
+                if (!splitPerAbi) {
+                    abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86_64")
+                }
             }
         }
 
@@ -66,6 +93,22 @@ android {
 
     dependencies {
         implementation("com.google.oboe:oboe:1.9.3")
+        testImplementation("junit:junit:4.13.2")
+    }
+}
+
+gradle.taskGraph.whenReady {
+    if (allTasks.any { it.name.contains("Release") }) {
+        val required = listOf("keyAlias", "keyPassword", "storeFile", "storePassword")
+        val missing = required.filter { signingProperties.getProperty(it).isNullOrBlank() }
+        val storeFile = signingProperties.getProperty("storeFile")
+        val storeExists = !storeFile.isNullOrBlank() && rootProject.file(storeFile).isFile
+        if (!signingPropertiesFile.isFile || missing.isNotEmpty() || !storeExists) {
+            throw GradleException(
+                "android/key.properties with a valid keystore is required for release builds. " +
+                    "Copy android/key.properties.example and follow README.md.",
+            )
+        }
     }
 }
 

@@ -4,6 +4,11 @@ import 'package:flutter/services.dart';
 class HapticsService {
   const HapticsService({this.enabled = true});
   final bool enabled;
-  Future<void> tap() async { if (enabled) await HapticFeedback.selectionClick(); }
-  Future<void> success() async { if (enabled) await HapticFeedback.mediumImpact(); }
+  Future<void> tap() async {
+    if (enabled) await HapticFeedback.selectionClick();
+  }
+
+  Future<void> success() async {
+    if (enabled) await HapticFeedback.mediumImpact();
+  }
 }

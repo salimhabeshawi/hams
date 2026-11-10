@@ -15,11 +15,23 @@ void main() {
     }
   });
 
-  test('rename validation normalizes whitespace and rejects excluded themes', () {
-    expect(NameValidator.normalize('  Gentle   Mango '), 'Gentle Mango');
-    expect(NameValidator.validate('Gentle   Mango'), isNull);
-    expect(NameValidator.validate('Lucky Dog'), isNotNull);
-    expect(NameValidator.validate('a' * 25), isNotNull);
-    expect(NameValidator.validate('Name!'), isNotNull);
+  test(
+    'rename validation normalizes whitespace and rejects excluded themes',
+    () {
+      expect(NameValidator.normalize('  Gentle   Mango '), 'Gentle Mango');
+      expect(NameValidator.validate('Gentle   Mango'), isNull);
+      expect(NameValidator.validate('Lucky Dog'), isNotNull);
+      expect(NameValidator.validate('a' * 25), isNotNull);
+      expect(NameValidator.validate('Name!'), isNotNull);
+      expect(NameValidator.validate('D0g'), isNotNull);
+      expect(NameValidator.validate('Music Fan'), isNotNull);
+    },
+  );
+
+  test('normalization preserves allowed punctuation and length boundaries', () {
+    expect(NameValidator.normalize("  Bright--Mango  "), "Bright--Mango");
+    expect(NameValidator.validate("A'B"), isNull);
+    expect(NameValidator.validate('A' * 24), isNull);
+    expect(NameValidator.validate('A' * 25), isNotNull);
   });
 }

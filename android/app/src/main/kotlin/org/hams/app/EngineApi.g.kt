@@ -269,6 +269,156 @@ data class PingReply (
     return "PingReply(value=$value, version=$version)"
   }
 }
+
+/** Generated class from Pigeon that represents data sent in messages. */
+data class EngineSnapshot (
+  val state: String? = null,
+  val sessionId: String? = null,
+  val title: String? = null,
+  val speakerName: String? = null,
+  val listenerCount: Long? = null,
+  val maxListeners: Long? = null,
+  val networkReady: Boolean? = null,
+  val headphonesConnected: Boolean? = null,
+  val level: Double? = null,
+  val reason: String? = null
+)
+ {
+  companion object {
+    fun fromList(pigeonVar_list: List<Any?>): EngineSnapshot {
+      val state = pigeonVar_list[0] as String?
+      val sessionId = pigeonVar_list[1] as String?
+      val title = pigeonVar_list[2] as String?
+      val speakerName = pigeonVar_list[3] as String?
+      val listenerCount = pigeonVar_list[4] as Long?
+      val maxListeners = pigeonVar_list[5] as Long?
+      val networkReady = pigeonVar_list[6] as Boolean?
+      val headphonesConnected = pigeonVar_list[7] as Boolean?
+      val level = pigeonVar_list[8] as Double?
+      val reason = pigeonVar_list[9] as String?
+      return EngineSnapshot(state, sessionId, title, speakerName, listenerCount, maxListeners, networkReady, headphonesConnected, level, reason)
+    }
+  }
+  fun toList(): List<Any?> {
+    return listOf(
+      state,
+      sessionId,
+      title,
+      speakerName,
+      listenerCount,
+      maxListeners,
+      networkReady,
+      headphonesConnected,
+      level,
+      reason,
+    )
+  }
+  override fun equals(other: Any?): Boolean {
+    if (other == null || other.javaClass != javaClass) {
+      return false
+    }
+    if (this === other) {
+      return true
+    }
+    val other = other as EngineSnapshot
+    return EngineApiPigeonUtils.deepEquals(this.state, other.state) && EngineApiPigeonUtils.deepEquals(this.sessionId, other.sessionId) && EngineApiPigeonUtils.deepEquals(this.title, other.title) && EngineApiPigeonUtils.deepEquals(this.speakerName, other.speakerName) && EngineApiPigeonUtils.deepEquals(this.listenerCount, other.listenerCount) && EngineApiPigeonUtils.deepEquals(this.maxListeners, other.maxListeners) && EngineApiPigeonUtils.deepEquals(this.networkReady, other.networkReady) && EngineApiPigeonUtils.deepEquals(this.headphonesConnected, other.headphonesConnected) && EngineApiPigeonUtils.deepEquals(this.level, other.level) && EngineApiPigeonUtils.deepEquals(this.reason, other.reason)
+  }
+
+  override fun hashCode(): Int {
+    var result = javaClass.hashCode()
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.state)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.sessionId)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.title)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.speakerName)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.listenerCount)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.maxListeners)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.networkReady)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.headphonesConnected)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.level)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.reason)
+    return result
+  }
+  override fun toString(): String {
+    return "EngineSnapshot(state=$state, sessionId=$sessionId, title=$title, speakerName=$speakerName, listenerCount=$listenerCount, maxListeners=$maxListeners, networkReady=$networkReady, headphonesConnected=$headphonesConnected, level=$level, reason=$reason)"
+  }
+}
+
+/** Generated class from Pigeon that represents data sent in messages. */
+data class SpeakerAnnouncement (
+  val sessionId: String? = null,
+  val deviceId: String? = null,
+  val name: String? = null,
+  val title: String? = null,
+  val pinRequired: Boolean? = null,
+  val listeners: Long? = null,
+  val maxListeners: Long? = null,
+  val tcpPort: Long? = null,
+  val udpPort: Long? = null,
+  val state: String? = null,
+  val address: String? = null
+)
+ {
+  companion object {
+    fun fromList(pigeonVar_list: List<Any?>): SpeakerAnnouncement {
+      val sessionId = pigeonVar_list[0] as String?
+      val deviceId = pigeonVar_list[1] as String?
+      val name = pigeonVar_list[2] as String?
+      val title = pigeonVar_list[3] as String?
+      val pinRequired = pigeonVar_list[4] as Boolean?
+      val listeners = pigeonVar_list[5] as Long?
+      val maxListeners = pigeonVar_list[6] as Long?
+      val tcpPort = pigeonVar_list[7] as Long?
+      val udpPort = pigeonVar_list[8] as Long?
+      val state = pigeonVar_list[9] as String?
+      val address = pigeonVar_list[10] as String?
+      return SpeakerAnnouncement(sessionId, deviceId, name, title, pinRequired, listeners, maxListeners, tcpPort, udpPort, state, address)
+    }
+  }
+  fun toList(): List<Any?> {
+    return listOf(
+      sessionId,
+      deviceId,
+      name,
+      title,
+      pinRequired,
+      listeners,
+      maxListeners,
+      tcpPort,
+      udpPort,
+      state,
+      address,
+    )
+  }
+  override fun equals(other: Any?): Boolean {
+    if (other == null || other.javaClass != javaClass) {
+      return false
+    }
+    if (this === other) {
+      return true
+    }
+    val other = other as SpeakerAnnouncement
+    return EngineApiPigeonUtils.deepEquals(this.sessionId, other.sessionId) && EngineApiPigeonUtils.deepEquals(this.deviceId, other.deviceId) && EngineApiPigeonUtils.deepEquals(this.name, other.name) && EngineApiPigeonUtils.deepEquals(this.title, other.title) && EngineApiPigeonUtils.deepEquals(this.pinRequired, other.pinRequired) && EngineApiPigeonUtils.deepEquals(this.listeners, other.listeners) && EngineApiPigeonUtils.deepEquals(this.maxListeners, other.maxListeners) && EngineApiPigeonUtils.deepEquals(this.tcpPort, other.tcpPort) && EngineApiPigeonUtils.deepEquals(this.udpPort, other.udpPort) && EngineApiPigeonUtils.deepEquals(this.state, other.state) && EngineApiPigeonUtils.deepEquals(this.address, other.address)
+  }
+
+  override fun hashCode(): Int {
+    var result = javaClass.hashCode()
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.sessionId)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.deviceId)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.name)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.title)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.pinRequired)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.listeners)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.maxListeners)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.tcpPort)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.udpPort)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.state)
+    result = 31 * result + EngineApiPigeonUtils.deepHash(this.address)
+    return result
+  }
+  override fun toString(): String {
+    return "SpeakerAnnouncement(sessionId=$sessionId, deviceId=$deviceId, name=$name, title=$title, pinRequired=$pinRequired, listeners=$listeners, maxListeners=$maxListeners, tcpPort=$tcpPort, udpPort=$udpPort, state=$state, address=$address)"
+  }
+}
 private open class EngineApiPigeonCodec : StandardMessageCodec() {
   override fun readValueOfType(type: Byte, buffer: ByteBuffer): Any? {
     return when (type) {
@@ -280,6 +430,16 @@ private open class EngineApiPigeonCodec : StandardMessageCodec() {
       130.toByte() -> {
         (readValue(buffer) as? List<Any?>)?.let {
           PingReply.fromList(it)
+        }
+      }
+      131.toByte() -> {
+        (readValue(buffer) as? List<Any?>)?.let {
+          EngineSnapshot.fromList(it)
+        }
+      }
+      132.toByte() -> {
+        (readValue(buffer) as? List<Any?>)?.let {
+          SpeakerAnnouncement.fromList(it)
         }
       }
       else -> super.readValueOfType(type, buffer)
@@ -295,6 +455,14 @@ private open class EngineApiPigeonCodec : StandardMessageCodec() {
         stream.write(130)
         writeValue(stream, value.toList())
       }
+      is EngineSnapshot -> {
+        stream.write(131)
+        writeValue(stream, value.toList())
+      }
+      is SpeakerAnnouncement -> {
+        stream.write(132)
+        writeValue(stream, value.toList())
+      }
       else -> super.writeValue(stream, value)
     }
   }
@@ -304,6 +472,17 @@ private open class EngineApiPigeonCodec : StandardMessageCodec() {
 interface EngineApi {
   fun ping(request: PingRequest): PingReply
   fun version(): String
+  fun snapshot(): EngineSnapshot
+  fun startSpeaker(deviceId: String, name: String, title: String?, pin: String?, autoAccept: Boolean)
+  fun stopSession()
+  fun discover()
+  fun speakers(): List<SpeakerAnnouncement>
+  fun connect(address: String, port: Long, pin: String?, deviceId: String, name: String)
+  fun cancelConnection()
+  fun respondToRequest(deviceId: String, accept: Boolean, alwaysAllow: Boolean)
+  fun removeListener(deviceId: String, block: Boolean)
+  fun setMuted(muted: Boolean)
+  fun setBoost(boost: Double)
 
   companion object {
     /** The codec used by EngineApi. */
@@ -337,6 +516,203 @@ interface EngineApi {
           channel.setMessageHandler { _, reply ->
             val wrapped: List<Any?> = try {
               listOf(api.version())
+            } catch (exception: Throwable) {
+              EngineApiPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.hams.EngineApi.snapshot$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { _, reply ->
+            val wrapped: List<Any?> = try {
+              listOf(api.snapshot())
+            } catch (exception: Throwable) {
+              EngineApiPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.hams.EngineApi.startSpeaker$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val deviceIdArg = args[0] as String
+            val nameArg = args[1] as String
+            val titleArg = args[2] as String?
+            val pinArg = args[3] as String?
+            val autoAcceptArg = args[4] as Boolean
+            val wrapped: List<Any?> = try {
+              api.startSpeaker(deviceIdArg, nameArg, titleArg, pinArg, autoAcceptArg)
+              listOf(null)
+            } catch (exception: Throwable) {
+              EngineApiPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.hams.EngineApi.stopSession$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { _, reply ->
+            val wrapped: List<Any?> = try {
+              api.stopSession()
+              listOf(null)
+            } catch (exception: Throwable) {
+              EngineApiPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.hams.EngineApi.discover$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { _, reply ->
+            val wrapped: List<Any?> = try {
+              api.discover()
+              listOf(null)
+            } catch (exception: Throwable) {
+              EngineApiPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.hams.EngineApi.speakers$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { _, reply ->
+            val wrapped: List<Any?> = try {
+              listOf(api.speakers())
+            } catch (exception: Throwable) {
+              EngineApiPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.hams.EngineApi.connect$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val addressArg = args[0] as String
+            val portArg = args[1] as Long
+            val pinArg = args[2] as String?
+            val deviceIdArg = args[3] as String
+            val nameArg = args[4] as String
+            val wrapped: List<Any?> = try {
+              api.connect(addressArg, portArg, pinArg, deviceIdArg, nameArg)
+              listOf(null)
+            } catch (exception: Throwable) {
+              EngineApiPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.hams.EngineApi.cancelConnection$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { _, reply ->
+            val wrapped: List<Any?> = try {
+              api.cancelConnection()
+              listOf(null)
+            } catch (exception: Throwable) {
+              EngineApiPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.hams.EngineApi.respondToRequest$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val deviceIdArg = args[0] as String
+            val acceptArg = args[1] as Boolean
+            val alwaysAllowArg = args[2] as Boolean
+            val wrapped: List<Any?> = try {
+              api.respondToRequest(deviceIdArg, acceptArg, alwaysAllowArg)
+              listOf(null)
+            } catch (exception: Throwable) {
+              EngineApiPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.hams.EngineApi.removeListener$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val deviceIdArg = args[0] as String
+            val blockArg = args[1] as Boolean
+            val wrapped: List<Any?> = try {
+              api.removeListener(deviceIdArg, blockArg)
+              listOf(null)
+            } catch (exception: Throwable) {
+              EngineApiPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.hams.EngineApi.setMuted$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val mutedArg = args[0] as Boolean
+            val wrapped: List<Any?> = try {
+              api.setMuted(mutedArg)
+              listOf(null)
+            } catch (exception: Throwable) {
+              EngineApiPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.hams.EngineApi.setBoost$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val boostArg = args[0] as Double
+            val wrapped: List<Any?> = try {
+              api.setBoost(boostArg)
+              listOf(null)
             } catch (exception: Throwable) {
               EngineApiPigeonUtils.wrapError(exception)
             }

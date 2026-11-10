@@ -16,8 +16,7 @@ enum ThemeSeed {
   tangerine('Tangerine', Color(0xFFFF6D00)),
   lime('Lime', Color(0xFFAFB42B)),
   sky('Sky', Color(0xFF00BCD4)),
-  cocoa('Cocoa', Color(0xFF795548),
-  ),
+  cocoa('Cocoa', Color(0xFF795548)),
   slate('Slate', Color(0xFF607D8B)),
   coral('Coral', Color(0xFFFF7043)),
   lilac('Lilac', Color(0xFF9C27B0));
@@ -40,7 +39,10 @@ class AppTheme {
     );
     final dark = brightness == Brightness.dark;
     final colors = amoled && dark
-        ? scheme.copyWith(surface: Colors.black, surfaceContainer: const Color(0xFF111111))
+        ? scheme.copyWith(
+            surface: Colors.black,
+            surfaceContainer: const Color(0xFF111111),
+          )
         : scheme;
     return ThemeData(
       useMaterial3: true,
@@ -49,7 +51,7 @@ class AppTheme {
       fontFamily: 'RobotoFlex',
       pageTransitionsTheme: const PageTransitionsTheme(
         builders: <TargetPlatform, PageTransitionsBuilder>{
-          TargetPlatform.android: FadeForwardsPageTransitionsBuilder(),
+          TargetPlatform.android: _SharedAxisPageTransitionsBuilder(),
         },
       ),
       inputDecorationTheme: InputDecorationTheme(
@@ -67,9 +69,33 @@ class AppTheme {
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           minimumSize: const Size(48, 56),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
         ),
       ),
+    );
+  }
+}
+
+class _SharedAxisPageTransitionsBuilder extends PageTransitionsBuilder {
+  const _SharedAxisPageTransitionsBuilder();
+
+  @override
+  Widget buildTransitions<T>(
+    PageRoute<T> route,
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    final slide = Tween<Offset>(
+      begin: const Offset(.08, 0),
+      end: Offset.zero,
+    ).chain(CurveTween(curve: Curves.easeOutCubic)).animate(animation);
+    return FadeTransition(
+      opacity: animation,
+      child: SlideTransition(position: slide, child: child),
     );
   }
 }

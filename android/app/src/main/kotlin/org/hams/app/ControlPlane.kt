@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 package org.hams.app
 
+import android.util.Base64
 import java.io.DataInputStream
 import java.io.DataOutputStream
 import java.io.EOFException
@@ -24,7 +25,6 @@ import java.security.SignatureException
 import java.security.spec.ECGenParameterSpec
 import java.security.spec.PKCS8EncodedKeySpec
 import java.security.spec.X509EncodedKeySpec
-import java.util.Base64
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
 import javax.crypto.Cipher
@@ -40,9 +40,13 @@ data class SafeInterface(val address: String, val prefixLength: Short, val loopb
 object IdentitySafeNetwork {
     fun interfaces(): List<SafeInterface> = NetworkInterface.getNetworkInterfaces()
         ?.asSequence()
-        ?.flatMap { ni -> ni.inetAddresses.asSequence() }
-        ?.filterIsInstance<Inet4Address>()
-        ?.map { SafeInterface(it.hostAddress, 24, it.isLoopbackAddress) }
+        ?.flatMap { ni -> ni.interfaceAddresses.asSequence() }
+        ?.mapNotNull { address ->
+            val inet = address.address
+            if (inet is Inet4Address) SafeInterface(
+                inet.hostAddress, address.networkPrefixLength, inet.isLoopbackAddress
+            ) else null
+        }
         ?.distinctBy { it.address }
         ?.toList()
         ?: emptyList()
@@ -197,11 +201,11 @@ object HamsCrypto {
         initialize(ECGenParameterSpec("secp256r1"), random)
     }.generateKeyPair()
 
-    fun publicKey(keyPair: KeyPair): String = Base64.getEncoder().encodeToString(keyPair.public.encoded)
+    fun publicKey(keyPair: KeyPair): String = Base64.encodeToString(keyPair.public.encoded, Base64.NO_WRAP)
     fun decodePublic(encoded: String): PublicKey = KeyFactory.getInstance("EC")
-        .generatePublic(X509EncodedKeySpec(Base64.getDecoder().decode(encoded)))
+        .generatePublic(X509EncodedKeySpec(Base64.decode(encoded, Base64.DEFAULT)))
     fun decodePrivate(encoded: String): PrivateKey = KeyFactory.getInstance("EC")
-        .generatePrivate(PKCS8EncodedKeySpec(Base64.getDecoder().decode(encoded)))
+        .generatePrivate(PKCS8EncodedKeySpec(Base64.decode(encoded, Base64.DEFAULT)))
 
     fun sharedSecret(privateKey: PrivateKey, publicKey: PublicKey): ByteArray =
         KeyAgreement.getInstance("ECDH").apply {

@@ -18,30 +18,30 @@ class PingReply {
 }
 
 class EngineSnapshot {
-  String state = 'idle';
+  String? state;
   String? sessionId;
   String? title;
   String? speakerName;
-  int listenerCount = 0;
-  int maxListeners = 50;
-  bool networkReady = false;
-  bool headphonesConnected = false;
-  double level = 0;
+  int? listenerCount;
+  int? maxListeners;
+  bool? networkReady;
+  bool? headphonesConnected;
+  double? level;
   String? reason;
 }
 
 class SpeakerAnnouncement {
-  String sessionId = '';
-  String deviceId = '';
-  String name = '';
+  String? sessionId;
+  String? deviceId;
+  String? name;
   String? title;
-  bool pinRequired = false;
-  int listeners = 0;
-  int maxListeners = 50;
-  int tcpPort = 41711;
-  int udpPort = 41712;
-  String state = 'live';
-  String address = '';
+  bool? pinRequired;
+  int? listeners;
+  int? maxListeners;
+  int? tcpPort;
+  int? udpPort;
+  String? state;
+  String? address;
 }
 
 @HostApi()
